@@ -145,7 +145,8 @@ class HBNBCommand(cmd.Cmd):
             new_instance.save()
             print(new_instance.id)
         except Exception as e: # not enough values to unpack / unrecognized value / sql error
-            print(e)
+            # print(e)
+            pass
 
     def help_create(self):
         """ Help information for the create method """
