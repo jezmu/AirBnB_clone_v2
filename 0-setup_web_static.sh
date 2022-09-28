@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # sets up server
+apt-get -y update
+apt-get -y install nginx
 mkdir -p /data/web_static/shared/ /data/web_static/releases/test/
 echo \
 '<html>
@@ -9,8 +11,9 @@ echo \
     Holberton School
   </body>
 </html>' > /data/web_static/releases/test/index.html
+rm -f /data/web_static/current
 ln -sf /data/web_static/releases/test/ /data/web_static/current
-chown -R ubuntu:ubuntu /data
+chown -hR ubuntu:ubuntu /data
 CONF="server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
