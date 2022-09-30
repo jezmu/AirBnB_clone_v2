@@ -59,6 +59,10 @@ def deploy():
 
 def do_clean(number=0):
     """Deletes out of date versions
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1dcc7d46e29430daba96ebe9887fe39079e91e36
     Args:
         number: number of most recent files to keep
     """
