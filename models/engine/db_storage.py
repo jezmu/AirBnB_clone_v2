@@ -32,6 +32,7 @@ class DBStorage:
         """Queries current database session"""
         objs_dict = {}
         if cls:
+            cls = str(cls).split('.')[-1].strip('<>\'"')
             objects = self.__session.query(models.classes[cls]).all()
             for obj in objects:
                 objs_dict[f"{obj.__class__.__name__}.{obj.id}"] = obj
@@ -66,4 +67,8 @@ class DBStorage:
 
     def close(self):
         """Remove private session attribute"""
+        self.__session.close()
+
+    def close(self):
+        '''closes session'''
         self.__session.close()

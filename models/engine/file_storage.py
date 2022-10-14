@@ -13,8 +13,11 @@ class FileStorage:
         """Returns a dictionary of models currently in storage"""
         if cls and cls != "":
             objs = {}
-            if isinstance(cls, str): cls = models.classes.get(cls, None)
+            cls = str(cls).split('.')[-1].strip('<>\'"')
+            cls = models.classes.get(cls, None)
+            # print(cls, end='\n\n\n')
             for k, v in FileStorage.__objects.items():
+                # print()
                 if isinstance(v, cls):
                     objs[k] = v
             return objs
@@ -64,3 +67,7 @@ class FileStorage:
             if key in FileStorage.__objects.keys():
                 FileStorage.__objects.pop(key)
             self.save()
+
+    def close(self):
+        '''deserialize JSON file to objects'''
+        self.reload()
