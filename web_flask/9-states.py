@@ -27,12 +27,6 @@ def state(id):
     return render_template('9-states.html', state=state)
 
 
-@app.route("/c/<text>")
-def c_is_fun(text):
-    """c is fun route"""
-    return "C " + text.replace("_", " ")
-
-
 @app.teardown_appcontext
 def teardown(self):
     '''delete sqlalchemy session after each request'''
