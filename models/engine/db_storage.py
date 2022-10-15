@@ -6,9 +6,8 @@ import models
 from models.base_model import Base
 from os import getenv
 from sqlalchemy import create_engine
-from models import (Amenity,City,Place,Review,State,User, BaseModel)
+from models import (Amenity, City, Place, Review, State, User, BaseModel)
 from sqlalchemy.orm import sessionmaker, scoped_session
-
 
 
 class DBStorage:
@@ -23,8 +22,10 @@ class DBStorage:
         host = getenv("HBNB_MYSQL_HOST")
         database = getenv("HBNB_MYSQL_DB")
         env = getenv("HBNB_ENV", "none")
-        self.__engine = create_engine("mysql+mysqldb://{}:{}@{}/{}".format(user, password, host, database), pool_pre_ping=True)
-        
+        self.__engine = create_engine(
+            "mysql+mysqldb://{}:{}@{}/{}".format(
+                user, password, host, database), pool_pre_ping=True)
+
         if env == "test":
             Base.metadata.drop_all(self.__engine)
 
