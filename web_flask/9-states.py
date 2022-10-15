@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''Displays the following routes:
 /states
 /states/<id>

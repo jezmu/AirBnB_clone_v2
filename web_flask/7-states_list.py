@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 '''Displays list of states'''
 from flask import Flask, render_template
 from models import storage

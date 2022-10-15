@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Runs simple flask application with the following routes:
 /
 /hbnb

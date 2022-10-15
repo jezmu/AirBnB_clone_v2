@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Runs simple flask application with / route only"""
 from flask import Flask
 
