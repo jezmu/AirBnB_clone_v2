@@ -16,6 +16,7 @@ def states():
     states = list(storage.all('State').values())
     return render_template('9-states.html', states=states)
 
+
 @app.route('/states/<id>')
 def state(id):
     '''returns single state'''
@@ -24,6 +25,7 @@ def state(id):
         if v.id == id:
             state = v
     return render_template('9-states.html', state=state)
+
 
 @app.teardown_appcontext
 def teardown(self):

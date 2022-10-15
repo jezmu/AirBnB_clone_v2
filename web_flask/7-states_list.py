@@ -13,6 +13,7 @@ def states_list():
     states = list(storage.all('State').values())
     return render_template('7-states_list.html', states=states)
 
+
 @app.teardown_appcontext
 def teardown(self):
     '''delete sqlalchemy session after each request'''
