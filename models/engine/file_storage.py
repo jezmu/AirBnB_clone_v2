@@ -17,17 +17,17 @@ class FileStorage:
         '''
             Return the dictionary
         '''
-        new_dict = {}
-        if cls is None:
-            return self.__objects
-
-        if cls != "":
-            for k, v in self.__objects.items():
-                if cls == k.split(".")[0]:
-                    new_dict[k] = v
-            return new_dict
-        else:
-            return self.__objects
+        if cls and cls != "":
+            objs = {}
+            cls = str(cls).split('.')[-1].strip('<>\'"')
+            cls = models.classes.get(cls, None)
+            # print(cls, end='\n\n\n')
+            for k, v in FileStorage.__objects.items():
+                # print()
+                if isinstance(v, cls):
+                    objs[k] = v
+            return objs
+        return self.__objects
 
     def new(self, obj):
         '''
