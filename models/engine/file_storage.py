@@ -4,6 +4,7 @@
 '''
 import json
 import models
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -17,17 +18,19 @@ class FileStorage:
         '''
             Return the dictionary
         '''
-        if cls and cls != "":
-            objs = {}
-            cls = str(cls).split('.')[-1].strip('<>\'"')
-            cls = models.classes.get(cls, None)
-            # print(cls, end='\n\n\n')
-            for k, v in FileStorage.__objects.items():
-                # print()
-                if isinstance(v, cls):
-                    objs[k] = v
-            return objs
-        return self.__objects
+        new_dict = {}
+        if cls is None:
+            return self.__objects
+
+        if cls != "":
+            if not isinstance(cls, str) and issubclass(cls, BaseModel):
+                cls = cls.__name__
+            for k, v in self.__objects.items():
+                if cls == k.split(".")[0]:
+                    new_dict[k] = v
+            return new_dict
+        else:
+            return self.__objects
 
     def new(self, obj):
         '''
